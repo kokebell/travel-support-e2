@@ -1,13 +1,15 @@
 package com.example.demo.model;
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileForm {
-    private MultipartFile mFile;
+    private List<MultipartFile> mFile;
 
-	public MultipartFile getMultipartFile() {
+	public List<MultipartFile> getMultipartFile() {
 		return mFile;
 	}
-	public void setMultipartFile(MultipartFile multipartFile) {
+	public void setMultipartFile(List<MultipartFile> multipartFile) {
 		this.mFile = multipartFile;
 	}
 }

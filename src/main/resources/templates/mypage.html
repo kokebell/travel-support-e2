@@ -12,7 +12,7 @@
 	<form th:action="|/editaccount/${@account.email}|" method="post">
 		<table border="1">
 			<tr>
-				<th>名前</th>
+				<th>マイページ</th>
 				<td>[[${userInfo.name}]]</td>
 			</tr>
 			<tr>
@@ -37,7 +37,18 @@
 	<hr>
 	
 	<h3>トラベルノート</h3>
-		
+	<th:block th:each="note : ${noteList}">
+		<img th:src="${note.img1}">
+		<div>
+			<br><br>
+			<font size="5"><b>[[${note.title}]]</b></font><br><br>
+			[[${note.memo}]]<br>
+			<a th:href="|/editaccount/${@account.email}|">詳細はこちら</a>	
+		</div>
+	
+		<div style="display:block"></div>
+	</th:block>
+	<a th:href="|/addnote/${@account.email}|">ノートを追加する</a>
 	<hr>
 </body>
 </html>
