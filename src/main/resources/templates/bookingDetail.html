@@ -10,6 +10,7 @@
 			height: 200px;
 			object-fit: cover;
 			padding: 0 10px 10px 0;
+			margin-top: 10px;
 		}	
 		
 		
@@ -18,7 +19,7 @@
 <body>
 	<header th:replace="header"></header>
 	<th:block th:each="inn : ${inns}">
-	<h1>[[${inn.name}]] : 宿泊施設の詳細ページ</h1>
+	<h1 class="pref">[[${inn.name}]] : 宿泊施設の詳細ページ</h1>
 	
 	<img th:src="${inn.img1}">
 	<img th:src="${inn.img2}">
