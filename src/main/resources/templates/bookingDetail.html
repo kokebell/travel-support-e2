@@ -2,6 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>宿泊施設の詳細ページ</title>
+	<link rel="stylesheet" type="text/css" href="/css/style2.css">
 	
 	<style>
 		img{
@@ -11,21 +12,13 @@
 			padding: 0 10px 10px 0;
 		}	
 		
-		.fixed_link{
-			position: fixed;
-			top: 20px;
-			right: 20px;
-			background-color: yellow;
-			font-size: 20px;
-		}
 		
 	</style>
 </head>
 <body>
+	<header th:replace="header"></header>
 	<th:block th:each="inn : ${inns}">
 	<h1>[[${inn.name}]] : 宿泊施設の詳細ページ</h1>
-	
-	<a href="javascript: history.back();" class="fixed_link">前のページに戻る</a>
 	
 	<img th:src="${inn.img1}">
 	<img th:src="${inn.img2}">
@@ -95,5 +88,6 @@
 	</div>
 	<hr>
 	<h3 th:if="${result}!=null">予約を受け付けました。お待ちしております。</h3>
+	<footer th:replace="footer">
 </body>
 </html>
