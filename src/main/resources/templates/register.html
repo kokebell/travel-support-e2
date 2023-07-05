@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>新規登録</title>
+	<link rel="stylesheet" type="text/css" href="/css/styleRegister.css">
+</head>
+
+<body>
+	<h1>新規登録</h1>
+
+	<form action="/register" method="post">
+		<div>
+			<h2>お客様情報</h2>
+
+						<p style="color:red">
+							<span th:each="message:${messages}">
+								<span th:text=${message}></span><br>
+							</span>
+						</p>
+
+<!--			<div class="error" style="text-align: center;">-->
+<!--				<ul th:each="message : ${messages}" style="list-style: none;">-->
+<!--					<li th:text="${message}" style="color: red"></li>-->
+<!--				</ul>-->
+<!--			</div>-->
+
+			<br>
+			<table>
+				<tr>
+					<th align="right">お名前：</th>
+					<td><input type="text" name="NAME" th:value="${name}"></td>
+				</tr>
+				<tr>
+					<th align="right">住所：</th>
+					<td><input type="text" name="ADDRESS" th:value="${address}"></td>
+				</tr>
+				<tr>
+					<th align="right">電話番号：</th>
+					<td><input type="text" name="TEL" th:value="${tel}"></td>
+				</tr>
+				<tr>
+					<th align="right">e-mail：</th>
+					<td><input type="text" name="EMAIL" th:value="${email}"></td>
+				</tr>
+				<tr>
+					<th align="right">パスワード：</th>
+					<td><input type="text" name="PASSWORD"></td>
+				</tr>
+			</table>
+
+			<button>登録</button>
+	</form>
+	</div>
+
+</body>
+
+</html>

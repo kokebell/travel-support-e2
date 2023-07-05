@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>スポット詳細</title>
+	<link rel="stylesheet" type="text/css" href="/css/style2.css">
+	
+	<style>
+		img{
+			width: 550px;
+			height: 350px;
+			object-fit:fill;
+			margin:0px 10px;
+		}
+		
+		
+	</style>
+	
+</head>
+
+<body>
+	<header th:replace="header"></header>
+
+<th:block th:each="spot : ${spots}">
+		<h1 class="pref">[[${spot.name}]] : 詳細</h1>
+
+<table border="1">
+	<tr><th colspan="2">[[${spot.name}]]</th></tr>
+	
+	<tr>
+		<th>所在地</th>
+		<td>[[${spot.location}]]</td>
+	</tr>
+	<tr>
+		<th>アクセス</th>
+		<td>[[${spot.access}]]</td>
+	</tr>
+	<tr>
+		<th>料金</th>
+		<td>[[${spot.price}]]</td>
+	</tr>	
+</table>
+<br>
+
+<img th:src="${spot.img1}">
+<img th:src="${spot.img2}">
+<img th:src="${spot.img3}">
+
+</th:block>
+<footer th:replace="footer">
+</body>
+
+</html>

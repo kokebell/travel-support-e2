@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>アカウント情報の編集</title>
+</head>
+<body>
+	<h1>アカウント情報の編集</h1>
+	<span>メールアドレスは別画面から変更してください</span>
+	<ul th:each="error:${messages}">
+		<li>[[${error}]]</li>
+	</ul>
+	
+	<form th:action="|/editaccount/${@account.email}|" method="post">
+		<table border="1">
+			<tr>
+				<th>ユーザ名</th>
+				<td><input type="text" name="name" th:value="${userInfo.name}"></td>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<td><input type="text" name="address" th:value="${userInfo.address}"></td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td><input type="text" name="tel" th:value="${userInfo.tel}"></td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>[[${userInfo.email}]]</td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td><input type="text" name="password" th:value="${userInfo.password}"></td>
+			</tr>
+		</table>
+	<input type="submit" value="アカウント情報を更新する">
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>マイページ</title>
+</head>
+<body>
+	<h1>マイページ</h1>
+	[[${@account.name}]]さんのマイページ
+
+	<h3>アカウント情報</h3>
+	<form th:action="|/editaccount/${@account.email}|" method="post">
+		<table border="1">
+			<tr>
+				<th>名前</th>
+				<td>[[${userInfo.name}]]</td>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<td>[[${userInfo.address}]]</td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td>[[${userInfo.tel}]]</td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>[[${userInfo.email}]]</td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td><span>※セキュリティのため、非表示にしています</span></td>
+			</tr>
+		</table>
+		<a th:href="|/editaccount/${@account.email}|">アカウント情報を編集する</a>
+	</form>
+	<hr>
+	
+	<h3>トラベルノート</h3>
+		
+	<hr>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>[[${pref.name}]]</title>
+	<link rel="stylesheet" type="text/css" href="/css/style2.css">
+
+	<style>
+		img {
+			display: inline-flex;
+			height: 300px;
+			width: 300px;
+			object-fit: contain;
+		}
+
+		span {
+			width: 900px;
+			display: inline-block;
+			vertical-align: top;
+		}
+	</style>
+
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<h1 class="pref">[[${pref.name}]]おすすめスポット</h1>
+
+
+	<!--	<a href="/back" class="fixed_link">前のページに戻る</a>-->
+
+	<th:block th:each="spot:${spots}">
+		<div class="spot">
+			<img th:src="${spot.img1}">
+
+			<span>
+				<br><br>
+				<font size="5"><b>[[${spot.name}]]</b></font><br><br>
+				[[${spot.location}]]<br><br>
+				<span class="outline"> [[${spot.outline}]]</span><br><br>
+				<a th:href="|/detail/${spot.id}|">詳細はこちら</a>
+				<a th:href="|/inn/${spot.id}|">周辺のおすすめ宿を探す</a>
+				<a th:href="|/restaurant/${spot.id}|">周辺のおすすめ飲食店を探す</a>
+			</span>
+		</div>
+			
+			<div style="display:block"></div>
+		
+
+	</th:block>
+
+	<footer th:replace="footer">
+</body>
+
+</html>

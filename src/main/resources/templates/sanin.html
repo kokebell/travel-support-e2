@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>県選択</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<style>
+		
+		div {
+			position: absolute;
+			top: 200px;
+			left: 550px;
+			width: 700px;
+			height: 600px;
+			text-align: center;
+			display: flex;
+			align-items: center;
+		}
+		
+		img {
+			text-align: center;
+			display: flex;
+			align-items: center;
+			height: auto;
+		}
+		
+		div #tottori {
+			position: absolute;
+			top: 150px;
+			left: 500px;
+		}
+
+		div #shimane {
+			position: absolute;
+			top: 230px;
+			left: 230px;
+		}
+
+		div #okayama {
+			position: absolute;
+			top: 270px;
+			left: 480px;
+		}
+
+		div #hiroshima {
+			position: absolute;
+			top: 310px;
+			left: 300px;
+		}
+
+		div #yamaguchi {
+			position: absolute;
+			top: 380px ;
+			left: 70px;
+		}
+	</style>
+</head>
+
+
+<body>
+<header th:replace="header"></header>
+<!--	<h1>中国地方・県選択</h1>-->
+
+<!--	<h2>こんにちは、[[${@account.name}]]さん</h2>-->
+
+	
+	<h1 style="text-align: center; background-color: sandybrown; margin: 0px;">中国地方・県選択</h1>
+	<h2 style="text-align: center; background-color: sandybrown; margin: 0px;">こんにちは、[[${@account.name}]]さん</h2>
+	
+	
+	<div>
+		
+		<img src="../img/sanin.png" width="700" height="700"></img>
+
+		
+		<form action="/pref/1" method="get">
+			<span id="tottori"><button>鳥取県</button></span>
+		</form>
+		
+		
+		<form action="/pref/2" method="get">
+			<span id="shimane"><button>島根県</button></span>
+		</form>
+
+
+		<form action="/pref/3" method="get">
+			<span id="okayama"><button>岡山県</button></span>
+		</form>
+		
+		
+		<form action="/pref/4" method="get">
+			<span id="hiroshima"><button>広島県</button></span>
+		</form>
+
+		<form action="/pref/5" method="get">
+			<span id="yamaguchi"><button>山口県</button></span>
+		</form>
+
+	</div>
+
+	<!--		<div style="width:100%">-->
+	<!--		<img src="/sanin.png" style="position: absolute; top:50%; left:50%; transform: translate(-50%,-50%);-->
+	<!--		width : 90%; height : auto;"></img>-->
+	<!--		</div>-->
+
+
+
+	<!--	<button style="position: absolute; top:50%; left:50%; transform: translate(400%,-700%);">鳥取県</button>-->
+
+
+
+	<!--	<form action="/pref/2" method="get">-->
+	<!--		<button style="position: absolute; top:50%; left:50%; transform: translate(-150%,-300%);">島根県</button>-->
+	<!--	</form>-->
+
+	<!--	<form action="/pref/3" method="get">-->
+	<!--		<button style="position: absolute; top:50%; left:50%; transform: translate(350%,-110%);">岡山県</button>-->
+	<!--	</form>-->
+
+	<!--	<form action="/pref/4" method="get">-->
+	<!--		<button style="position: absolute; top:50%; left:50%; transform: translate(-50%,50%);">広島県</button>-->
+	<!--	</form>-->
+
+	<!--	<form action="/pref/5" method="get">-->
+	<!--		<button style="position: absolute; top:50%; left:50%; transform: translate(-500%,400%);">山口県</button>-->
+	<!--	</form>-->
+
+
+<footer th:replace="footer">
+</footer>
+</body>
+
+</html>
