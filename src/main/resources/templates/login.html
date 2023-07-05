@@ -9,29 +9,37 @@
 	<link rel="stylesheet" type="text/css" href="/css/styleLogin.css">
 </head>
 
+
 <body>
 
 	<header>
 		<h1>旅行支援サイト</h1>
 	</header>
 
+
 	<form action="/login" method="post">
-		<div>
-			<div class="error" style="text-align: center;">
-				<ul th:each="message : ${message}" style="list-style: none;">
-					<li th:text="${message}" style="color: red"></li>
+		
+		<video src="/video/login.mp4" autoplay loop muted></video>
+		
+		<div class="contents">
+			<span class="error" style="text-align: center;">
+				<ul style="list-style: none;">
+					<li style="color: red">メールアドレスを入力してください</li>
 				</ul>
-			</div>
+				<ul style="list-style: none;">
+					<li style="color: red">パスワードを入力してください</li>
+				</ul>
+			</span>
 
 			<table>
 				<tr>
 					<th align="right">メールアドレス：</th>
-					<td><input type="text" name="EMAIL" th:value="${email}" placeholder="メールアドレス"></td>
+					<td><input type="text" name="EMAIL" value="" placeholder="メールアドレス"></td>
 
 				</tr>
 				<tr>
 					<th align="right">パスワード：</th>
-					<td><input type="password" name="PASSWORD" th:value="${password}" placeholder="パスワード"></td>
+					<td><input type="password" name="PASSWORD" value="" placeholder="パスワード"></td>
 				</tr>
 			</table>
 
@@ -42,7 +50,47 @@
 			<a href="/register">新規会員登録はこちら</a>
 		</div>
 	</form>
-
+<!--	<div id="bg-video">-->
+<!--	</div>-->
 </body>
+
+
+<!--<body>-->
+
+<!--	<header>-->
+<!--		<h1>旅行支援サイト</h1>-->
+<!--	</header>-->
+<!--	<div class="video-wrap">-->
+<!--		<video id="bg-video" src="/video/login.mp4" autoplay loop></video>-->
+
+<!--		<form action="/login" method="post">-->
+<!--			<div class="contents">-->
+<!--				<span class="error" style="text-align: center;">-->
+<!--					<ul th:each="message : ${message}" style="list-style: none;">-->
+<!--						<li th:text="${message}" style="color: red"></li>-->
+<!--					</ul>-->
+<!--				</span>-->
+
+<!--				<table>-->
+<!--					<tr>-->
+<!--						<th align="right">メールアドレス：</th>-->
+<!--						<td><input type="text" name="EMAIL" th:value="${email}" placeholder="メールアドレス"></td>-->
+
+<!--					</tr>-->
+<!--					<tr>-->
+<!--						<th align="right">パスワード：</th>-->
+<!--						<td><input type="password" name="PASSWORD" th:value="${password}" placeholder="パスワード"></td>-->
+<!--					</tr>-->
+<!--				</table>-->
+
+<!--				<br>-->
+<!--				<button>ログイン</button>-->
+<!--				<br>-->
+
+<!--				<a href="/register">新規会員登録はこちら</a>-->
+<!--			</div>-->
+<!--		</form>-->
+<!--	</div>-->
+<!--</body>-->
 
 </html>
