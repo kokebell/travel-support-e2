@@ -60,11 +60,15 @@
 					<th align="right">価格：</th>
 					<td th:text="|${price}円/人　　総額：${sum}円|"></td>
 				</tr>
+<!--				<tr>-->
+<!--					<td colspan="2"><input type="submit" value="予約を確定する"></td>-->
+<!--				</tr>-->
 			</table>
+			<input type="submit" value="予約を確定する">
 			<form action="/confirmDecision" method="post">
-			<button style="top: 680px;">予約を確定する</button>
+<!--			<button style="top: 680px;">予約を確定する</button>-->
 		</form>
-		
+		<br>
 <!--		<hr>-->
 <!--	<h3 th:if="${result}!=null" th:text="${@account.name}さん、予約を受け付けました。お待ちしております。"></h3>-->
 
