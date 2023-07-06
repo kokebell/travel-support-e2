@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.entity.Img;
 import com.example.demo.entity.Note;
 import com.example.demo.entity.User;
 import com.example.demo.model.FileForm;
@@ -138,7 +139,7 @@ public class MypageController {
     		@RequestParam(name="title", required=false) String title,
     		@RequestParam(name="memo", required=false) String memo,
     		@RequestParam(name="article", required=false) String article,
-    		@RequestParam(name="img", required=false) List<String> img,
+    		@RequestParam(name="pathForSave", required=false) List<String> img,
     		Model model){
     	
     	//追加日時、更新日時を設定するための現在時刻、
@@ -154,13 +155,19 @@ public class MypageController {
     	newNote.setAddedDate(added_date);
     	newNote.setUpdatedDate(added_date);
     	newNote.setArticle(article);
-    	String[] imageList = img.toArray(new String[img.size()]);
-    	newNote.setImg(imageList);
+    	Integer noteId = newNote.getId();
+    	newNote.setImgId(noteId.toString() + uid);
+    	
+    	List<Img> newImg = new ArrayList<>();
+    	newImg.setImageId(noteId.toString() + uid);
+    	
     	
     	//トラベルノートをデータベースに登録する
     	noteRepository.save(newNote);
     	
-    	return "addNote";
+    	model.addAttribute("uid", uid);
+    	
+    	return "redirect:/mypage/" + uid ;
     }
     
     @PostMapping("/uploadimgfile/{uid}")
@@ -169,6 +176,7 @@ public class MypageController {
     		@RequestParam(name="title", required=false) String title,
     		@RequestParam(name="memo", required=false) String memo,
     		@RequestParam(name="article", required=false) String article,
+    		@RequestParam(name="img", required=false) String[] img,
     		Model model, FileForm fileForm) {
     	List<String> pathForSave = new ArrayList<>();
         List<MultipartFile> mfile = fileForm.getMultipartFile();
@@ -204,6 +212,7 @@ public class MypageController {
         model.addAttribute("memo", memo);
         model.addAttribute("article", article);
         model.addAttribute("pathForSave", pathForSave);
+        model.addAttribute("img", img);
         
         try {
         	Thread.sleep(5000);

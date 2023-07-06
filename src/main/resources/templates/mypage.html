@@ -10,6 +10,7 @@
 
 	<h3>アカウント情報</h3>
 	<form th:action="|/editaccount/${@account.id}|" method="post">
+		<input type="hidden" th:value="${uid}">
 		<table border="1">
 			<tr>
 				<th>マイページ</th>
@@ -38,7 +39,7 @@
 	
 	<h3>トラベルノート</h3>
 	<th:block th:each="note : ${noteList}">
-		<img th:src="${note.img1}">
+		<img th:src="${note.img[0]}">
 		<div>
 			<br><br>
 			<font size="5"><b>[[${note.title}]]</b></font><br><br>

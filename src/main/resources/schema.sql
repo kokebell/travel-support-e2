@@ -107,6 +107,6 @@ CREATE TABLE notes
   added_date TEXT,
   updated_date TEXT,
   article TEXT,
-  img TEXT[]
+  img_id TEXT
 ); 
 

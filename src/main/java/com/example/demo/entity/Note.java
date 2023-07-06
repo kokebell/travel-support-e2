@@ -48,7 +48,8 @@ public class Note {
 		
 		@Getter
 		@Setter
-		private String[] img; //画像
+		@Column(name="img_id")
+		private String imgId; //画像
 		
 //		@Getter
 //		@Setter
@@ -63,22 +64,22 @@ public class Note {
 			
 		}
 		
-		public Note(Integer authorId, String title, String memo, String updatedDate, String[] img) {
+		public Note(Integer authorId, String title, String memo, String updatedDate, String imgId) {
 			this.authorId = authorId;
 			this.title = title;
 			this.memo = memo;
 			this.updatedDate = updatedDate;
-			this.img = img;
+			this.imgId = imgId;
 		}
 		
-		public Note(Integer authorId, String title, String memo, String addedDate, String updatedDate, String article, String[] img) {
+		public Note(Integer authorId, String title, String memo, String addedDate, String updatedDate, String article, String imgId) {
 			this.authorId = authorId;
 			this.title = title;
 			this.memo = memo;
 			this.addedDate = addedDate;
 			this.updatedDate = updatedDate;
 			this.article = article;
-			this.img = img;
+			this.imgId = imgId;
 		}
 		
 		
