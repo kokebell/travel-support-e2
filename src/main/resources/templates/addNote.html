@@ -3,9 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>トラベルノートの追加</title>
+<link rel="stylesheet" type="text/css" href="/css/style2.css">
+
+<style>
+		.push {
+			transform: translate(-50%, -50%);
+			font-size: 15px;
+			font-weight: bold;
+			padding: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			margin-top: 10px;
+		}
+
+		input.push:hover {
+			background-color: #45496a;
+			color: white;
+		}
+	</style>
+
 </head>
 <body>
-	<h1>トラベルノートの追加</h1>
+	<header th:replace="header"></header>
+	<h1 class="pref">トラベルノートの追加</h1>
 	<form method="post" th:action="@{|/uploadimgfile/${uid}|}" enctype="multipart/form-data" th:object="${fileForm}">
 	<table border="1">
 		<tr>
@@ -40,7 +60,9 @@
 	</table>
 	
 	<form th:action="|/savenote/${@account.email}|" method="post" id="oneofnote">
-		<input type="submit" value="ノートを追加する">
+		<input class="push" type="submit" value="ノートを追加する">
+		<br>
 	</form>	
+	<footer th:replace="footer">
 </body>
 </html>

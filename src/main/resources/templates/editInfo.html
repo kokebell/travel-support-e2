@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>アカウント情報の編集</title>
+	<meta charset="UTF-8">
+	<title>アカウント情報の編集</title>
+	<link rel="stylesheet" type="text/css" href="/css/style2.css">
+
+	<style>
+		.push {
+			transform: translate(-50%, -50%);
+			font-size: 15px;
+			font-weight: bold;
+			padding: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			margin-top: 10px;
+		}
+
+		input.push:hover {
+			background-color: #45496a;
+			color: white;
+		}
+	</style>
+
 </head>
+
 <body>
-	<h1>アカウント情報の編集</h1>
+	<header th:replace="header"></header>
+	<h1 class="pref">アカウント情報の編集</h1>
 	<span>メールアドレスは別画面から変更してください</span>
 	<ul th:each="error:${messages}">
 		<li>[[${error}]]</li>
 	</ul>
-	
+
 	<form th:action="|/editaccount/${@account.email}|" method="post">
 		<table border="1">
 			<tr>
@@ -34,8 +56,9 @@
 				<td><input type="text" name="password" th:value="${userInfo.password}"></td>
 			</tr>
 		</table>
-	<input type="submit" value="アカウント情報を更新する">
+		<input class="push" type="submit" value="アカウント情報を更新する">
 	</form>
-	
+	<footer th:replace="footer">
 </body>
+
 </html>
