@@ -141,6 +141,23 @@ td, th{
 	font-size: 17px;
 }
 
+button{
+	position: absolute;
+	top: 65%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+button:hover{
+	background-color:#45496a;
+	color: white;
+}
+
 /* 送信ボタン */
 /*button {*/
 /*	margin: 2px;*/
