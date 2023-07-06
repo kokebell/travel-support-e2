@@ -48,39 +48,37 @@ public class Note {
 		
 		@Getter
 		@Setter
-		private String img1; //1枚目の画像・サムネイル画像
+		private String[] img; //画像
 		
-		@Getter
-		@Setter
-		private String img2; //2枚目の画像
-		
-		@Getter
-		@Setter
-		private String img3; //3枚目の画像
+//		@Getter
+//		@Setter
+//		private String img2; //2枚目の画像
+//		
+//		@Getter
+//		@Setter
+//		private String img3; //3枚目の画像
 
 		// コンストラクタ
 		public Note() {
 			
 		}
 		
-		public Note(Integer authorId, String title, String memo, String updatedDate, String img1) {
+		public Note(Integer authorId, String title, String memo, String updatedDate, String[] img) {
 			this.authorId = authorId;
 			this.title = title;
 			this.memo = memo;
 			this.updatedDate = updatedDate;
-			this.img1 = img1;
+			this.img = img;
 		}
 		
-		public Note(Integer authorId, String title, String memo, String addedDate, String updatedDate, String article, String img1, String img2, String img3) {
+		public Note(Integer authorId, String title, String memo, String addedDate, String updatedDate, String article, String[] img) {
 			this.authorId = authorId;
 			this.title = title;
 			this.memo = memo;
 			this.addedDate = addedDate;
 			this.updatedDate = updatedDate;
 			this.article = article;
-			this.img1 = img1;
-			this.img2 = img2;
-			this.img3 = img3;
+			this.img = img;
 		}
 		
 		

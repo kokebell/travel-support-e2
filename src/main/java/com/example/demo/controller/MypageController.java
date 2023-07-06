@@ -103,8 +103,9 @@ public class MypageController {
 		newUserInfo.setTel(tel);
 		newUserInfo.setPassword(password);
 		userRepository.save(newUserInfo);
+		model.addAttribute("email", email);
 
-		return "redirect:/mypage/" + email;
+		return "mypage";
     }
     
     //「マイページの詳細画面」の表示
@@ -137,13 +138,9 @@ public class MypageController {
     		@RequestParam(name="title", required=false) String title,
     		@RequestParam(name="memo", required=false) String memo,
     		@RequestParam(name="article", required=false) String article,
-    		@RequestParam(name="img", required=false) String img,
+    		@RequestParam(name="img", required=false) List<String> img,
     		Model model){
     	
-    	Optional<User> userInfo = userRepository.findById(uid);
-    	User user = userInfo.get();
-    	Integer userId = user.getId();
-    	model.addAttribute("userInfo", userInfo.get());
     	//追加日時、更新日時を設定するための現在時刻、
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
     	LocalDateTime ldt = LocalDateTime.now();
@@ -151,14 +148,14 @@ public class MypageController {
     	
     	//トラベルノートを新規作成する場合に必要なデータを用意する
     	Note newNote = new Note(); 
-    	newNote.setAuthorId(userId);
+    	newNote.setAuthorId(uid);
     	newNote.setTitle(title);
     	newNote.setMemo(memo);
     	newNote.setAddedDate(added_date);
     	newNote.setUpdatedDate(added_date);
     	newNote.setArticle(article);
-    	newNote.setImg1(img);
-    	System.out.println(img);
+    	String[] imageList = img.toArray(new String[img.size()]);
+    	newNote.setImg(imageList);
     	
     	//トラベルノートをデータベースに登録する
     	noteRepository.save(newNote);
@@ -166,9 +163,9 @@ public class MypageController {
     	return "addNote";
     }
     
-    @PostMapping("/uploadimgfile/{id}")
+    @PostMapping("/uploadimgfile/{uid}")
     String up(
-    		@PathVariable("id")String id,
+    		@PathVariable("uid")String uid,
     		@RequestParam(name="title", required=false) String title,
     		@RequestParam(name="memo", required=false) String memo,
     		@RequestParam(name="article", required=false) String article,
@@ -202,7 +199,7 @@ public class MypageController {
     		
         });
         
-        model.addAttribute("id", id);
+        model.addAttribute("uid", uid);
         model.addAttribute("title", title);
         model.addAttribute("memo", memo);
         model.addAttribute("article", article);

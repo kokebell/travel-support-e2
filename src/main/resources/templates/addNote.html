@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>トラベルノートの追加</h1>
-	<form method="post" th:action="@{|/uploadimgfile/${email}|}" enctype="multipart/form-data" th:object="${fileForm}">
+	<form method="post" th:action="@{|/uploadimgfile/${uid}|}" enctype="multipart/form-data" th:object="${fileForm}">
 	<table border="1">
 		<tr>
 			<th>タイトル</th>

@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>トラベルノートの追加確認</h1>
-	<form method="post" th:action="@{|/savenote/${email}|}" enctype="multipart/form-data" th:object="${fileForm}">
+	<form method="post" th:action="@{|/savenote/${uid}|}" enctype="multipart/form-data" th:object="${fileForm}">
 		<input type="hidden" name="title" th:value="${title}">
 		<input type="hidden" name="memo" th:value="${memo}">
 		<input type="hidden" name="article" th:value="${article}">
