@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.entity.Img;
 import com.example.demo.entity.Note;
 import com.example.demo.entity.User;
 import com.example.demo.model.FileForm;
@@ -155,16 +154,11 @@ public class MypageController {
     	newNote.setAddedDate(added_date);
     	newNote.setUpdatedDate(added_date);
     	newNote.setArticle(article);
-    	Integer noteId = newNote.getId();
-    	newNote.setImgId(noteId.toString() + uid);
-    	
-    	List<Img> newImg = new ArrayList<>();
-    	newImg.setImageId(noteId.toString() + uid);
-    	
+    	String[] imageList = img.toArray(new String[img.size()]);
+    	newNote.setImg(imageList);
     	
     	//トラベルノートをデータベースに登録する
     	noteRepository.save(newNote);
-    	
     	model.addAttribute("uid", uid);
     	
     	return "redirect:/mypage/" + uid ;

@@ -22,11 +22,17 @@ public class Img {
 		@Getter
 		@Setter
 		@Column(name="image_id")
-		private String imageId;
+		private Integer imageId;
+		
+		@Getter
+		@Setter
+		private Integer num;
 		
 		@Getter
 		@Setter
 		private String img; // 作成者のID
+		
+		
 		
 
 
@@ -35,7 +41,7 @@ public class Img {
 			
 		}
 		
-		public Img(String imageId, String img) {
+		public Img(Integer imageId, String img) {
 			this.imageId = imageId;
 			this.img = img;
 		}
