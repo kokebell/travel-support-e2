@@ -10,7 +10,8 @@ import com.example.demo.entity.Note;
 
 public interface ImgRepository extends JpaRepository<Img, Integer> {
 	
-	//SELECT * FROM imgs WHERE img_id = ?;
-	List<Note>findByImageId(String imageId);
+	//SELECT * FROM imgs WHERE image_id = ?;
+	List<Note>findByImageId(Integer imageId);
+	Optional<Note>findByNumAndImageId(Integer num, Integer imageId);
 	
 }
