@@ -22,13 +22,14 @@
 		<video src="/video/login.mp4" autoplay loop muted></video>
 		
 		<div class="contents">
-			<span class="error" style="text-align: center;">
-				<ul style="list-style: none;">
-					<li style="color: red">メールアドレスを入力してください</li>
+			<span class="error" style="text-align: center; width: 350px;">
+	
+				<ul th:each="message:${message}" style="list-style: none;">
+					<li style="color: red">[[${message}]]</li>
 				</ul>
-				<ul style="list-style: none;">
-					<li style="color: red">パスワードを入力してください</li>
-				</ul>
+<!--				<ul style="list-style: none;">-->
+<!--					<li style="color: red">パスワードを入力してください</li>-->
+<!--				</ul>-->
 			</span>
 
 			<table>
