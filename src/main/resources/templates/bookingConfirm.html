@@ -7,11 +7,12 @@
 	<meta charset="UTF-8">
 	<title>予約確認</title>
 	<link rel="stylesheet" type="text/css" href="/css/style2.css">
-	
+
 	<style>
-		td span{
+		td span {
 			left: 0;
 		}
+
 		
 		
 	</style>
@@ -25,52 +26,52 @@
 
 
 		<h2>お客様予約情報</h2>
-			<table border="1">
-				<tr>
-					<th align="right">お名前：</th>
-					<td>[[${@account.name}]]</td>
-				</tr>
-				<tr>
-					<th align="right">メールアドレス：</th>
-					<td>[[${@account.email}]]</td>
-				</tr>
-				<tr>
-					<th align="right">日程：</th>
-					<td>[[${schedule}]]</td>
-				</tr>
-				<tr>
-					<th align="right">宿泊日数：</th>
-<!--					<td><th:text="${stayDate}+'日'"></th:text></td>-->
-					<td th:text="${stayDate}+'日'"></td>
-				</tr>
-				<tr>
-					<th align="right">人数：</th>
-					<td th:text="${people}+'人'"></td>
-				</tr>
-				<tr>
-					<th align="right">プラン：</th>
-					<td>
-						<span th:if="${plan}==1">素泊まり</span>
-						<span th:if="${plan}==2">夕食付き</span>
-						<span th:if="${plan}==3">朝食付き</span>
-						<span th:if="${plan}==4">夕食・朝食付き</span>
-					</td>
-				</tr>
-				<tr>
-					<th align="right">価格：</th>
-					<td th:text="|${price}円/人　　総額：${sum}円|"></td>
-				</tr>
-<!--				<tr>-->
-<!--					<td colspan="2"><input type="submit" value="予約を確定する"></td>-->
-<!--				</tr>-->
-			</table>
+		<table border="1">
+			<tr>
+				<th align="right">お名前：</th>
+				<td>[[${@account.name}]]</td>
+			</tr>
+			<tr>
+				<th align="right">メールアドレス：</th>
+				<td>[[${@account.email}]]</td>
+			</tr>
+			<tr>
+				<th align="right">日程：</th>
+				<td>[[${schedule}]]</td>
+			</tr>
+			<tr>
+				<th align="right">宿泊日数：</th>
+				<!--					<td><th:text="${stayDate}+'日'"></th:text></td>-->
+				<td th:text="${stayDate}+'日'"></td>
+			</tr>
+			<tr>
+				<th align="right">人数：</th>
+				<td th:text="${people}+'人'"></td>
+			</tr>
+			<tr>
+				<th align="right">プラン：</th>
+				<td>
+					<span th:if="${plan}==1">素泊まり</span>
+					<span th:if="${plan}==2">夕食付き</span>
+					<span th:if="${plan}==3">朝食付き</span>
+					<span th:if="${plan}==4">夕食・朝食付き</span>
+				</td>
+			</tr>
+			<tr>
+				<th align="right">価格：</th>
+				<td th:text="|${price}円/人　　総額：${sum}円|"></td>
+			</tr>
+			<!--				<tr>-->
+			<!--					<td colspan="2"><input type="submit" value="予約を確定する"></td>-->
+			<!--				</tr>-->
+		</table>
+		<form action="/confirmDecision" method="post">
 			<input type="submit" value="予約を確定する">
-			<form action="/confirmDecision" method="post">
-<!--			<button style="top: 680px;">予約を確定する</button>-->
 		</form>
+		<!--			<button style="top: 680px;">予約を確定する</button>-->
 		<br>
-<!--		<hr>-->
-<!--	<h3 th:if="${result}!=null" th:text="${@account.name}さん、予約を受け付けました。お待ちしております。"></h3>-->
+		<!--		<hr>-->
+		<!--	<h3 th:if="${result}!=null" th:text="${@account.name}さん、予約を受け付けました。お待ちしております。"></h3>-->
 
 		<footer th:replace="footer">
 </body>
