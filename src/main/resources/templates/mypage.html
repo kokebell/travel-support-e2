@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>マイページ</title>
+<link rel="stylesheet" type="text/css" href="/css/style2.css">
 </head>
 <body>
-	<h1>マイページ</h1>
+	<header th:replace="header"></header>
+	<h1 class="pref">マイページ</h1>
 	[[${@account.name}]]さんのマイページ
 
 	<h3>アカウント情報</h3>
@@ -51,5 +53,6 @@
 	</th:block>
 	<a th:href="|/addnote/${@account.id}|">ノートを追加する</a>
 	<hr>
+	<footer th:replace="footer">
 </body>
 </html>
