@@ -29,7 +29,14 @@ main{
 	position: absolute;
 	right: 80px;
 	top: 40px;
+	font-size: 13px;
+	color:#ffffff;
 }
+
+/*main th:block{*/
+/*	font-size: 13px;*/
+/*	color:#ffffff;*/
+/*}*/
 
 main img{
 	width:60px;
