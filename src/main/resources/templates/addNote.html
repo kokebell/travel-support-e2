@@ -60,7 +60,9 @@
 	</table>
 	
 	<form th:action="|/savenote/${@account.email}|" method="post" id="oneofnote">
+		<span style="left: 60px">
 		<input class="push" type="submit" value="ノートを追加する">
+		</span>
 		<br>
 	</form>	
 	<footer th:replace="footer">
