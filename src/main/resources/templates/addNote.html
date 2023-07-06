@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>トラベルノートの追加</title>
 </head>
 <body>
-
+	<h1>トラベルノートの追加</h1>
+	<form method="post" th:action="@{|/uploadimgfile/${email}|}" enctype="multipart/form-data" th:object="${fileForm}">
+	<table border="1">
+		<tr>
+			<th>タイトル</th>
+			<td><input type="text" name="title" th:value="${title}" maxlength="20"></td>
+		</tr>
+		<tr>
+			<th>見出し</th>
+			<td><input type="text" name="memo" th:value="${memo}" maxlength="20"></td>
+		</tr>
+		<tr>
+			<th>記事</th>
+			<td><input type="text" name="article" th:value="${article}" maxlength="4000"></td>
+		</tr>
+		<tr>
+			<th>画像</th>
+			<td>
+					<input type="file" th:field="*{multipartFile}" multiple>
+					<input type="submit" value="アップロード">
+			</td>
+		</tr>
+		</form>
+		
+		<th:block th:if="${pathForSave}!=null" th:each="path : ${pathForSave}">
+			<tr>
+				<th>画像</th>
+				<td>
+					<img th:src=${path}>
+				</td>
+			</tr>
+		</th:block>
+	</table>
+	
+	<form th:action="|/savenote/${@account.email}|" method="post" id="oneofnote">
+		<input type="submit" value="ノートを追加する">
+	</form>	
 </body>
 </html>

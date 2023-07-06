@@ -73,6 +73,7 @@ INSERT INTO inns_detail(inn_id, name, img1, img2, img3, location, access, type, 
 -- Usersテーブルデータ
 INSERT INTO users(name, address, tel, email, password) VALUES('山田太郎', '東京都千代田区', '123-456', 'yamada@mail', 'taro');
 INSERT INTO users(name, address, tel, email, password) VALUES('吉岡玲志', '鳥取県米子市', '000-0000', 'yr@example.com', 'yr');
+INSERT INTO users(name, address, tel, email, password) VALUES('中田', '東京都', '123-4567-8900', 'nh@example.com', 'kokemaru');
 
 -- Bookingsテーブルデータ
 --INSERT INTO bokkings(inn_id, plan_id, stay_date, people) VALUES();

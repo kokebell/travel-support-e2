@@ -9,6 +9,7 @@ import lombok.Data;
 @Component
 @Data
 public class Account {
+	private Integer id; // ID
 	private String name; // 名前
 	private String email; // メールアドレス
 

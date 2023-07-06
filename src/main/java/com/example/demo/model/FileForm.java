@@ -3,13 +3,10 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileForm {
-    private List<MultipartFile> mFile;
+import lombok.Data;
 
-	public List<MultipartFile> getMultipartFile() {
-		return mFile;
-	}
-	public void setMultipartFile(List<MultipartFile> multipartFile) {
-		this.mFile = multipartFile;
-	}
+@Data
+public class FileForm {
+    private List<MultipartFile> multipartFile;
+
 }

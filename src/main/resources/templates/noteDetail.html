@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styleNoteDetail.css">
+<title>トラベルノート情報</title>
+</head>
+<body>
+	<p>トラベルノート情報</p>
+	<h1>${noteInfo.title}</h1>
+	<h3>${noteInfo.memo}</h3>
+	<span>追加日時：</span><span>${noteInfo.addedDate}</span>
+	<span>更新日時：</span><span>${noteInfo.updatedDate}</span>
+	<img th:src="${noteInfo.img1}">
+	<img th:if="${noteInfo.img2}!=null" th:src="${noteInfo.img2}">
+	<img th:if="${noteInfo.img3}!=null" th:src="${noteInfo.img3}">
+		
+	
+	<div class="overflow-wrap">
+      <div class="normal">
+		  <p>[[${noteInfo.article}]]</p>
+      </div>
+	</div>
+	<hr>
+</body>
+</html>

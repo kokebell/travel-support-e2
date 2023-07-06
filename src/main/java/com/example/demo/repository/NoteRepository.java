@@ -11,6 +11,7 @@ public interface NoteRepository extends JpaRepository<Note, Integer> {
 	
 	//SELECT * FROM notes WHERE author_id = ?;
 	List<Note>findAllByAuthorId(Integer id);
-	//SELECT * FROM notes WHERE email = ?;
+	//SELECT * FROM notes WHERE author_id = ? AND id = ?;
+	Optional<Note>findByAuthorIdAndId(Integer authorid, Integer id);
 	
 }

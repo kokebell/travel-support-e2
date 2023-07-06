@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -31,12 +32,14 @@ public class FileController {
     String upload(
     		Model model, FileForm fileForm) {
     	
+    	List<String> pathForSave = new ArrayList<>();
         List<MultipartFile> mfile = fileForm.getMultipartFile();
         mfile.forEach( f -> { 
         	//ファイル名を現在時刻で初期化する
-        	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         	LocalDateTime ldt = LocalDateTime.now();
         	String initializedName = ldt.format(dtf);
+        	System.out.println(initializedName);
         	//ファイル名の初期化に用いるファイルフォーマットを取得する
         	String fileName = f.getOriginalFilename();
         	fileName.indexOf(".");
@@ -49,11 +52,23 @@ public class FileController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        	File fileImg = new File(filePath.toString());
-    		String str = fileImg.getAbsolutePath();
-    		System.out.println("path : " + str);
+//        	File fileImg = new File(filePath.toString());
+//    		String str = fileImg.getAbsolutePath();
+//    		System.out.println("path : " + str);
+        	String shorterPath = "/img/" + initializedName + fileFormat;
+        	System.out.println(shorterPath);
+    		pathForSave.add(shorterPath);
+    		
         });
         
-        return "redirect:/imgup";
+        model.addAttribute("pathForSave", pathForSave);
+        System.out.println(pathForSave);
+        try {
+        	Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			
+		}
+        return "imgup";
     }
+   
 }

@@ -1,5 +1,4 @@
 package com.example.demo.controller;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,8 +6,8 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,19 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.Note;
-import com.example.demo.entity.Pref;
-import com.example.demo.entity.Spot;
 import com.example.demo.entity.User;
 import com.example.demo.model.FileForm;
 import com.example.demo.repository.NoteRepository;
 import com.example.demo.repository.UserRepository;
-
-import java.util.Optional;
 
 @Controller
 public class MypageController {
@@ -40,14 +34,14 @@ public class MypageController {
 	NoteRepository noteRepository;
     
 	//「マイページ」の表示
-    @GetMapping("/mypage/{email}")
+    @GetMapping("/mypage/{uid}")
     String index(
-    		@PathVariable("email")String email,
+    		@PathVariable("uid")Integer uid,
     		Model model) {
-    	Optional<User> userInfo = userRepository.findByEmail(email);
+    	Optional<User> userInfo = userRepository.findById(uid);
     	User user = userInfo.get();
     	model.addAttribute("userInfo", user);
-    	List<Note> noteList = noteRepository.findAllByAuthorId(user.getId());
+    	List<Note> noteList = noteRepository.findAllByAuthorId(uid);
     	model.addAttribute("noteList", noteList);
         return "mypage";
     }
@@ -113,25 +107,40 @@ public class MypageController {
 		return "redirect:/mypage/" + email;
     }
     
+    //「マイページの詳細画面」の表示
+    @GetMapping("/note/{authorId}/{noteId}")
+    String show(
+    		@PathVariable("authorId")Integer authorId,
+    		@PathVariable("noteId")Integer noteId,
+    		Model model) {
+    	Optional<Note> noteInfo = noteRepository.findByAuthorIdAndId(authorId, noteId);
+    	
+    	model.addAttribute("noteInfo", noteInfo);
+        return "noteDetail";
+    }
+    
     //「トラベルノートの追加」画面を表示する
-    @GetMapping("/addnote/{email}")
+    @GetMapping("/addnote/{uid}")
     String addnote(
-    		@PathVariable("email")String email,
+    		@PathVariable("uid")Integer uid,
     		Model model){
-    	return "addNote2";
+    	model.addAttribute("uid", uid);
+    	model.addAttribute("fileForm", new FileForm());
+    	
+    	return "addNote";
     }
     
     //トラベルノートを追加する
-    @PostMapping("/savenote/{email}")
+    @PostMapping("/savenote/{uid}")
     String save(
-    		@PathVariable("email")String email,
+    		@PathVariable("uid")Integer uid,
     		@RequestParam(name="title", required=false) String title,
     		@RequestParam(name="memo", required=false) String memo,
     		@RequestParam(name="article", required=false) String article,
-    		@RequestParam(name="img1", required=false) String img1,
+    		@RequestParam(name="img", required=false) String img,
     		Model model){
     	
-    	Optional<User> userInfo = userRepository.findByEmail(email);
+    	Optional<User> userInfo = userRepository.findById(uid);
     	User user = userInfo.get();
     	Integer userId = user.getId();
     	model.addAttribute("userInfo", userInfo.get());
@@ -148,7 +157,8 @@ public class MypageController {
     	newNote.setAddedDate(added_date);
     	newNote.setUpdatedDate(added_date);
     	newNote.setArticle(article);
-    	newNote.setImg1(img1);
+    	newNote.setImg1(img);
+    	System.out.println(img);
     	
     	//トラベルノートをデータベースに登録する
     	noteRepository.save(newNote);
@@ -156,35 +166,55 @@ public class MypageController {
     	return "addNote";
     }
     
-    @PostMapping("/uploadimgfile")
-    String uploadimgfile(Model model, FileForm fileForm) {
-    	List<String> pathForSave = null;
+    @PostMapping("/uploadimgfile/{id}")
+    String up(
+    		@PathVariable("id")String id,
+    		@RequestParam(name="title", required=false) String title,
+    		@RequestParam(name="memo", required=false) String memo,
+    		@RequestParam(name="article", required=false) String article,
+    		Model model, FileForm fileForm) {
+    	List<String> pathForSave = new ArrayList<>();
         List<MultipartFile> mfile = fileForm.getMultipartFile();
         mfile.forEach( f -> { 
         	//ファイル名を現在時刻で初期化する
-        	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         	LocalDateTime ldt = LocalDateTime.now();
         	String initializedName = ldt.format(dtf);
+        	System.out.println(initializedName);
         	//ファイル名の初期化に用いるファイルフォーマットを取得する
         	String fileName = f.getOriginalFilename();
         	fileName.indexOf(".");
         	String fileFormat = fileName.substring(fileName.indexOf("."));
         	//指定した文字列からファイルパスを作成する
-        	Path filePath = Paths.get("C:/pleiades/2022-12/workspace/travel-support-e/src/main/resources/static/img/" + initializedName + fileFormat);
+        	Path filePath = Paths.get("C:/pleiades/2022-12/workspace/travel-support-e2/src/main/resources/static/img/" + initializedName + fileFormat);
         	//ファイルを取得する
         	try {
             	Files.copy(f.getInputStream(), filePath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        	
-    		String shorterPath = "/img/" + initializedName + fileFormat;
+//        	File fileImg = new File(filePath.toString());
+//    		String str = fileImg.getAbsolutePath();
+//    		System.out.println("path : " + str);
+        	String shorterPath = "/img/" + initializedName + fileFormat;
+        	System.out.println(shorterPath);
     		pathForSave.add(shorterPath);
+    		
         });
         
-        model.addAttribute(pathForSave);
+        model.addAttribute("id", id);
+        model.addAttribute("title", title);
+        model.addAttribute("memo", memo);
+        model.addAttribute("article", article);
+        model.addAttribute("pathForSave", pathForSave);
         
-        return "addNote2";
+        try {
+        	Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			
+		}
+        
+        return "confirmNote";
     }
     
 }
