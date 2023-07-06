@@ -81,8 +81,12 @@
 			<!--					<td colspan="2"><input type="submit" value="予約を確定する"></td>-->
 			<!--				</tr>-->
 		</table>
-
-		<span style="left: 50px"><input type="submit" value="予約を確定する"></span>
+		
+		<th:block th:if="${result}==null">
+		<span style="left: 50px">
+			<input type="submit" value="予約を確定する">
+		</span>
+		</th:block>
 		<!--		<input type="hidden" th:value="${result}">-->
 		<!--		[[${result}]]-->
 

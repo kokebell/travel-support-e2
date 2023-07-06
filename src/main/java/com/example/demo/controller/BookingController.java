@@ -71,6 +71,8 @@ public class BookingController {
 		}
 
 		Integer sum = price * people;
+		
+		String result = null;
 
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("stayDate", stayDate);
@@ -78,6 +80,7 @@ public class BookingController {
 		model.addAttribute("plan", plan);
 		model.addAttribute("price", price);
 		model.addAttribute("sum", sum);
+		model.addAttribute("result", result);
 
 		return "bookingConfirm";
 	}
