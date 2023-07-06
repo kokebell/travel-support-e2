@@ -26,8 +26,11 @@
 		input:hover {
 			background-color: #45496a;
 			color: white;
-		}		
-		
+		}
+
+		th:block {
+			background-color: sandybrown;
+		}
 	</style>
 </head>
 
@@ -35,7 +38,7 @@
 	<header th:replace="header"></header>
 	<h1 class="pref">予約確認</h1>
 
-	<form action="/register" method="post">
+	<form action="/confirmDecision" method="post">
 
 
 		<h2>お客様予約情報</h2>
@@ -78,15 +81,30 @@
 			<!--					<td colspan="2"><input type="submit" value="予約を確定する"></td>-->
 			<!--				</tr>-->
 		</table>
-		<form action="/confirmDecision" method="post">
+		
+		<th:block th:if="${result}==null">
+		<span style="left: 50px">
 			<input type="submit" value="予約を確定する">
-		</form>
-		<!--			<button style="top: 680px;">予約を確定する</button>-->
-		<br>
-		<!--		<hr>-->
-		<!--	<h3 th:if="${result}!=null" th:text="${@account.name}さん、予約を受け付けました。お待ちしております。"></h3>-->
+		</span>
+		</th:block>
+		<!--		<input type="hidden" th:value="${result}">-->
+		<!--		[[${result}]]-->
 
-		<footer th:replace="footer">
+		<input type="hidden" name="schedule" th:value="${schedule}">
+		<input type="hidden" name="stayDate" th:value="${stayDate}">
+		<input type="hidden" name="people" th:value="${people}">
+		<input type="hidden" name="plan" th:value="${plan}">
+		<input type="hidden" name="price" th:value="${price}">
+		<input type="hidden" name="sum" th:value="${sum}">
+	</form>
+	<!--			<button style="top: 680px;">予約を確定する</button>-->
+	<th:block th:if="${result}!=null">
+		<h1 class="pref">[[${@account.name}]]さん、予約が完了しました。お待ちしております。
+		</h1>
+	</th:block>
+	<!--		<h3 th:if="${result}!=null" th:text="${@account.name}さん、予約を受け付けました。お待ちしております。"></h3>-->
+
+	<footer th:replace="footer">
 </body>
 
 </html>
